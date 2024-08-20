@@ -1,0 +1,41 @@
+<div class="product-list grid grid-cols-1 gap-4 px-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3">
+  <div *ngFor="let product of products" class="max-w-sm mx-auto bg-white rounded-xl shadow-md overflow-hidden">
+    <div class="relative">
+      <img [src]="product.image.thumbnail" [alt]="product.name" class="w-full h-48 object-cover rounded-t-xl">
+      
+      <!-- Conditional Button/Quantity Selector -->
+      <div *ngIf="isAdded(product)" class="w-36 sm:w-3/4 lg:w-36 flex items-center justify-around mx-auto absolute bottom-0 inset-x-0 bg-orange-700 py-1.5 px-2 rounded-xl border-none border">
+        <button class="group w-5 h-5 border-2 border-white rounded-full flex items-center justify-center hover:bg-white" (click)="decrement(product)">
+          <svg xmlns="http://www.w3.org/2000/svg" class="fill-white w-3 group-hover:fill-orange-600" viewBox="0 0 10 2">
+            <path d="M0 .375h10v1.25H0V.375Z" />
+          </svg>
+        </button>
+        <span class="text-white text-center">{{ getQuantity(product) }}</span>
+        <button class="group w-5 h-5 border-2 border-white rounded-full flex items-center justify-center hover:bg-white" (click)="increment(product)">
+          <svg xmlns="http://www.w3.org/2000/svg" class="fill-white w-3 group-hover:fill-orange-600" viewBox="0 0 10 10">
+            <path d="M10 4.375H5.625V0h-1.25v4.375H0v1.25h4.375V10h1.25V5.625H10v-1.25Z" />
+          </svg>
+        </button>
+      </div>
+      
+      <!-- Centered "Add to Cart" Button -->
+      <button *ngIf="!isAdded(product)" (click)="addToCart(product)" class="w-36 sm:w-3/4 lg:w-36 flex items-center justify-center mx-auto absolute bottom-0 inset-x-0 bg-white py-1.5 px-2 rounded-xl border-orange-200 border">
+        <svg class="w-8 h-5 fill-orange-600">
+          <use href="/assets/images/icon-add-to-cart.svg#icon-add-to-cart"></use>
+        </svg>
+        <span class="text-center">Add to Cart</span>
+      </button>
+    </div>
+    <div class="p-4">
+      <span class="text-sm text-orange-900 font-light">
+        {{ product.category }}
+      </span>
+      <h3 class="text-base text-amber-900 font-semibold">
+        {{ product.name }}
+      </h3>
+      <p class="text-orange-600 font-bold">
+        {{ product.price | currency:'USD':'symbol' }}
+      </p>
+    </div>
+  </div>
+</div>
