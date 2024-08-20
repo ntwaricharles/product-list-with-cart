@@ -1,0 +1,24 @@
+<div class="bg-white shadow-md rounded-xl p-4">
+  <h2 class="text-lg font-semibold mb-4">Your Cart</h2>
+  <div *ngIf="cartItems.length === 0" class="text-gray-500">
+    Your cart is empty.
+  </div>
+  <div *ngFor="let item of cartItems" class="flex justify-between items-center mb-4">
+    <div class="flex items-center">
+      <img [src]="item.image.thumbnail" [alt]="item.name" class="w-16 h-16 object-cover rounded-lg">
+      <div class="ml-4">
+        <h3 class="text-base font-medium">{{ item.name }}</h3>
+        <p class="text-sm text-gray-600">{{ item.price | currency:'USD':'symbol' }}</p>
+      </div>
+    </div>
+    <div class="flex items-center">
+      <button class="text-red-600" (click)="removeFromCart(item)">
+        Remove
+      </button>
+      <span class="mx-2">{{ item.quantity }}</span>
+    </div>
+  </div>
+  <div class="mt-4 font-bold text-right">
+    Total: {{ total | currency:'USD':'symbol' }}
+  </div>
+</div>
