@@ -27,12 +27,10 @@ export class CartComponent implements OnInit {
   }
 
   confirmOrder(): void {
-    // Show confirmation modal
     this.viewModal = true;
   }
 
   closeModal(): void {
-    // Close the confirmation modal and reset the cart
     this.viewModal = false;
     this.cartService.clearCart();
   }

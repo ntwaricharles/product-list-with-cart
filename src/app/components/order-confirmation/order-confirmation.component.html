@@ -1,8 +1,10 @@
-<div class="fixed w-full h-screen bg-black inset-0 bg-opacity-30 grid place-content-center">
-  <div class="bg-white grid gap-5 py-4 px-10 rounded-lg">
+<div *ngIf="isModalVisible" class="fixed inset-0 bg-black bg-opacity-30 grid place-items-center">
+  <div [ngClass]="modalClass" class="bg-white p-10 rounded-lg transform transition-transform duration-500 ease-in-out">
+    <div class="flex justify-start mb-4">
+      <img src="/assets/images/icon-order-confirmed.svg" alt="Confirmed" class="w-16 h-16">
+    </div>
     <h3 class="text-xl md:text-3xl font-bold text-orange-900">Order Confirmed</h3>
     <span class="text-lg text-gray-600">We hope you enjoy your food!</span>
-
     <div *ngFor="let item of cartItems; let i = index" class="bg-orange-100 rounded-xl py-2 px-5 grid grid-cols-3 gap-2 items-center">
       <img [src]="item.image.thumbnail" [alt]="item.name" class="rounded-lg w-16 h-16">
       <div class="flex flex-col gap-2">

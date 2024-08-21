@@ -10,6 +10,13 @@ export class OrderConfirmationComponent {
   @Input() total: number = 0;
   @Output() complete = new EventEmitter<void>();
 
+  isModalVisible: boolean = false;
+  modalClass: string = 'translate-y-full'; 
+
+  ngOnInit(): void {
+    this.showModal();
+  }
+
   getTotal(): number {
     return this.cartItems.reduce(
       (sum, item) => sum + item.price * item.quantity,
@@ -18,7 +25,21 @@ export class OrderConfirmationComponent {
   }
 
   shop(): void {
-    // Emit the event to close the modal and start a new order
-    this.complete.emit();
+    this.hideModal();
+  }
+
+  showModal(): void {
+    this.isModalVisible = true;
+    setTimeout(() => {
+      this.modalClass = 'translate-y-0';
+    }, 10);
+  }
+
+  hideModal(): void {
+    this.modalClass = 'translate-y-full';
+    setTimeout(() => {
+      this.isModalVisible = false;
+      this.complete.emit();
+    }, 500); 
   }
 }
