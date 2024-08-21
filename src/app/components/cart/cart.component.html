@@ -13,12 +13,20 @@
     </div>
     <div class="flex items-center">
       <button class="text-red-600" (click)="removeFromCart(item)">
-        Remove
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
       </button>
       <span class="mx-2">{{ item.quantity }}</span>
     </div>
   </div>
   <div class="mt-4 font-bold text-right">
-    Total: {{ total | currency:'USD':'symbol' }}
+    Total: {{ getTotal() | currency:'USD':'symbol' }}
   </div>
+  <!-- Confirm Order Button -->
+  <button class="mt-4 w-full py-2 bg-orange-800 text-white font-semibold rounded-full hover:bg-orange-900" (click)="confirmOrder()">
+    Confirm Order
+  </button>
 </div>
+
+<app-order-confirmation *ngIf="viewModal" [cartItems]="cartItems" [total]="getTotal()" (complete)="closeModal()"></app-order-confirmation>

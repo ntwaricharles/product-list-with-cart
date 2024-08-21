@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CartService, CartItem } from '../../service/cart.service'; // Adjust the path as necessary
+import { CartService, CartItem } from '../../service/cart.service';
 
 @Component({
   selector: 'app-cart',
@@ -8,18 +8,32 @@ import { CartService, CartItem } from '../../service/cart.service'; // Adjust th
 })
 export class CartComponent implements OnInit {
   cartItems: CartItem[] = [];
-  total: number = 0;
+  viewModal = false;
 
   constructor(private cartService: CartService) {}
 
   ngOnInit(): void {
     this.cartService.cart$.subscribe((items) => {
       this.cartItems = items;
-      this.total = this.cartService.getTotal();
     });
   }
 
-  removeFromCart(product: CartItem): void {
-    this.cartService.removeFromCart(product);
+  removeFromCart(item: CartItem): void {
+    this.cartService.removeFromCart(item);
+  }
+
+  getTotal(): number {
+    return this.cartService.getTotal();
+  }
+
+  confirmOrder(): void {
+    // Show confirmation modal
+    this.viewModal = true;
+  }
+
+  closeModal(): void {
+    // Close the confirmation modal and reset the cart
+    this.viewModal = false;
+    this.cartService.clearCart();
   }
 }
