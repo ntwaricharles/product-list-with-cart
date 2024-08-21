@@ -1,11 +1,16 @@
-<h2 class="text-amber-950 mb-2 mt-2 sm:mb-4 sm:mt-4 font-bold text-3xl lg:text-6xl lg:mt-8 lg:mb-12 sm:text-4xl">
+<h2 class="text-amber-950 mb-2 mt-2 sm:mb-4 sm:mt-4 font-bold text-3xl lg:text-6xl lg:mt-6 lg:mb-6 sm:text-4xl">
   Desserts
 </h2>
 
 <div class="product-list grid grid-cols-1 gap-8 px-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
   <div *ngFor="let product of products" class="rounded-xl overflow-hidden mx-auto w-full md:max-w-md lg:max-w-lg">
     <div class="relative">
-      <img [src]="product.image.thumbnail" [alt]="product.name" class="w-full h-56 object-cover rounded-xl" />
+      <picture>
+        <source [srcset]="product.image.desktop" media="(min-width: 1024px)" />
+        <source [srcset]="product.image.tablet" media="(min-width: 768px)" />
+        <source [srcset]="product.image.mobile" media="(min-width: 480px)" />
+        <img [src]="product.image.thumbnail" [alt]="product.name" class="w-full h-56 object-cover rounded-xl" />
+      </picture>
 
       <div *ngIf="isAdded(product)" class="w-40 flex items-center justify-around mx-auto absolute bottom-0 inset-x-0 translate-y-1/2 bg-orange-700 py-2 px-3 rounded-full border-none border">
         <button class="group w-6 h-6 border-2 border-white rounded-full flex items-center justify-center hover:bg-white" (click)="decrement(product)">
