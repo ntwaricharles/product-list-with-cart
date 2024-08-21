@@ -1,33 +1,37 @@
 <div *ngIf="isModalVisible" class="fixed inset-0 bg-black bg-opacity-30 grid place-items-center">
-  <div [ngClass]="modalClass" class="bg-white p-10 rounded-lg transform transition-transform duration-500 ease-in-out">
-    <div class="flex justify-start mb-4">
-      <img src="/assets/images/icon-order-confirmed.svg" alt="Confirmed" class="w-16 h-16">
+  <div [ngClass]="modalClass" class="bg-white p-6 sm:p-8 lg:p-10 rounded-lg transform transition-transform duration-500 ease-in-out max-h-full overflow-y-auto">
+    <div class="flex justify-start mb-2 sm:mb-3 lg:mb-4">
+      <img src="/assets/images/icon-order-confirmed.svg" alt="Confirmed" class="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16">
     </div>
-    <h3 class="text-xl md:text-3xl font-bold text-orange-900">Order Confirmed</h3>
-    <span class="text-lg text-gray-600">We hope you enjoy your food!</span>
-    <div *ngFor="let item of cartItems; let i = index" class="bg-orange-100 rounded-xl py-2 px-5 grid grid-cols-3 gap-2 items-center">
-      <img [src]="item.image.thumbnail" [alt]="item.name" class="rounded-lg w-16 h-16">
-      <div class="flex flex-col gap-2">
-        <h4 class="text-orange-950 font-bold text-lg md:text-xl">{{ item.name }}</h4>
-        <div class="flex gap-5 pt-2">
-          <p class="text-orange-700 font-bold">{{ item.quantity }}x</p>
-          <p class="flex items-center gap-2">
-            <span class="font-light text-orange-950">&#64;</span>
-            <span class="text-gray-400 font-semibold">{{ item.price | currency:'USD':'symbol' }}</span>
-          </p>
+    <h3 class="text-lg sm:text-xl lg:text-2xl font-bold text-orange-900">Order Confirmed</h3>
+    <span class="text-sm sm:text-md lg:text-lg text-gray-600">We hope you enjoy your food!</span>
+
+    <div class="mt-4 space-y-2 lg:space-y-3">
+      <div *ngFor="let item of cartItems; let i = index" class="bg-orange-100 rounded-xl py-2 px-3 sm:py-3 sm:px-4 lg:py-4 lg:px-5 grid grid-cols-3 gap-2 items-center">
+        <img [src]="item.image.thumbnail" [alt]="item.name" class="rounded-lg w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16">
+        <div class="flex flex-col gap-1 sm:gap-2 lg:gap-3">
+          <h4 class="text-orange-950 font-bold text-md sm:text-lg lg:text-xl">{{ item.name }}</h4>
+          <div class="flex gap-4 pt-1 sm:gap-5 sm:pt-2 lg:gap-6 lg:pt-3">
+            <p class="text-orange-700 font-bold">{{ item.quantity }}x</p>
+            <p class="flex items-center gap-1 sm:gap-2">
+              <span class="font-light text-orange-950">&#64;</span>
+              <span class="text-gray-400 font-semibold">{{ item.price | currency:'USD':'symbol' }}</span>
+            </p>
+          </div>
         </div>
+        <p class="text-end font-bold text-md sm:text-lg lg:text-xl text-orange-950">{{ item.price * item.quantity | currency: 'USD':'symbol' }}</p>
       </div>
-      <p class="text-end font-bold text-lg md:text-xl text-orange-950">{{ item.price * item.quantity | currency: 'USD':'symbol' }}</p>
     </div>
 
-    <div class="max-w-full grid gap-5">
+    <div class="max-w-full grid gap-4 sm:gap-5 mt-6 lg:mt-8">
       <div class="flex items-center justify-between px-2">
         <p class="text-orange-950 opacity-55 font-medium">Order Total</p>
-        <p class="text-2xl font-bold text-orange-950">{{ getTotal() | currency:'USD':'symbol' }}</p>
+        <p class="text-xl sm:text-2xl font-bold text-orange-950">{{ getTotal() | currency:'USD':'symbol' }}</p>
       </div>
-      <button (click)="shop()" class="w-full py-4 bg-orange-800 text-white font-semibold rounded-full hover:bg-orange-900">
+      <button (click)="shop()" class="w-full py-3 sm:py-4 bg-orange-800 text-white font-semibold rounded-full hover:bg-orange-900">
         Start New Order
       </button>
     </div>
   </div>
 </div>
+
