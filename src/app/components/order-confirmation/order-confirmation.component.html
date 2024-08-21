@@ -1,25 +1,23 @@
 <div class="fixed w-full h-screen bg-black inset-0 bg-opacity-30 grid place-content-center">
   <div class="bg-white grid gap-5 py-4 px-10 rounded-lg">
-    <h3 class="text-3xl font-bold text-orange-900">Order Confirmed</h3>
+    <h3 class="text-xl md:text-3xl font-bold text-orange-900">Order Confirmed</h3>
     <span class="text-lg text-gray-600">We hope you enjoy your food!</span>
 
-    <!-- Display order items -->
     <div *ngFor="let item of cartItems; let i = index" class="bg-orange-100 rounded-xl py-2 px-5 grid grid-cols-3 gap-2 items-center">
       <img [src]="item.image.thumbnail" [alt]="item.name" class="rounded-lg w-16 h-16">
       <div class="flex flex-col gap-2">
-        <h4 class="text-orange-950 font-bold text-xl">{{ item.name }}</h4>
+        <h4 class="text-orange-950 font-bold text-lg md:text-xl">{{ item.name }}</h4>
         <div class="flex gap-5 pt-2">
           <p class="text-orange-700 font-bold">{{ item.quantity }}x</p>
           <p class="flex items-center gap-2">
-            <span class="font-light text-orange-950">&#64;</span> <!-- Changed to HTML entity -->
+            <span class="font-light text-orange-950">&#64;</span>
             <span class="text-gray-400 font-semibold">{{ item.price | currency:'USD':'symbol' }}</span>
           </p>
         </div>
       </div>
-      <p class="text-end font-bold text-xl text-orange-950">{{ item.price * item.quantity | currency: 'USD':'symbol' }}</p>
+      <p class="text-end font-bold text-lg md:text-xl text-orange-950">{{ item.price * item.quantity | currency: 'USD':'symbol' }}</p>
     </div>
 
-    <!-- Order Total and New Order Button -->
     <div class="max-w-full grid gap-5">
       <div class="flex items-center justify-between px-2">
         <p class="text-orange-950 opacity-55 font-medium">Order Total</p>

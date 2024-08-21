@@ -1,10 +1,13 @@
-<div class="product-list grid grid-cols-1 gap-4 px-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
-  <div *ngFor="let product of products" class=" rounded-xl shadow-md overflow-hidden mx-auto w-full md:max-w-md lg:max-w-lg">
+<h2 class="text-amber-950 mb-2 mt-2 sm:mb-4 sm:mt-4 font-bold text-3xl lg:text-6xl lg:mt-8 lg:mb-12 sm:text-4xl">
+  Desserts
+</h2>
+
+<div class="product-list grid grid-cols-1 gap-8 px-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
+  <div *ngFor="let product of products" class="rounded-xl overflow-hidden mx-auto w-full md:max-w-md lg:max-w-lg">
     <div class="relative">
-      <img [src]="product.image.thumbnail" [alt]="product.name" class="w-full h-56 object-cover rounded-t-xl">
-      
-      <!-- Conditional Button/Quantity Selector -->
-      <div *ngIf="isAdded(product)" class="w-40 flex items-center justify-around mx-auto absolute bottom-0 inset-x-0 bg-orange-700 py-2 px-3 rounded-full border-none border">
+      <img [src]="product.image.thumbnail" [alt]="product.name" class="w-full h-56 object-cover rounded-xl" />
+
+      <div *ngIf="isAdded(product)" class="w-40 flex items-center justify-around mx-auto absolute bottom-0 inset-x-0 translate-y-1/2 bg-orange-700 py-2 px-3 rounded-full border-none border">
         <button class="group w-6 h-6 border-2 border-white rounded-full flex items-center justify-center hover:bg-white" (click)="decrement(product)">
           <svg xmlns="http://www.w3.org/2000/svg" class="fill-white w-4 group-hover:fill-orange-600" viewBox="0 0 10 2">
             <path d="M0 .375h10v1.25H0V.375Z" />
@@ -17,25 +20,17 @@
           </svg>
         </button>
       </div>
-      
-      <!-- Centered "Add to Cart" Button -->
-      <button *ngIf="!isAdded(product)" (click)="addToCart(product)" class="w-40 flex items-center justify-center mx-auto absolute bottom-0 inset-x-0 bg-white py-2 px-3 rounded-full border-orange-200 border">
-        <svg class="w-8 h-5 fill-orange-600">
-          <use href="/assets/images/icon-add-to-cart.svg#icon-add-to-cart"></use>
-        </svg>
+
+      <button *ngIf="!isAdded(product)" (click)="addToCart(product)" class="w-40 flex items-center justify-center mx-auto absolute bottom-0 inset-x-0 translate-y-1/2 bg-white py-2 px-3 rounded-full border-orange-200 border">
+        <img src="/assets/images/icon-add-to-cart.svg" alt="Add to Cart" class="w-8 h-5 mr-2" />
         <span class="text-center">Add to Cart</span>
       </button>
     </div>
+
     <div class="p-4">
-      <span class="text-sm text-orange-900 font-light">
-        {{ product.category }}
-      </span>
-      <h3 class="text-base text-amber-900 font-semibold">
-        {{ product.name }}
-      </h3>
-      <p class="text-orange-600 font-bold">
-        {{ product.price | currency:'USD':'symbol' }}
-      </p>
+      <span class="text-sm text-orange-900 font-light">{{ product.category }}</span>
+      <h3 class="text-base text-amber-900 font-semibold">{{ product.name }}</h3>
+      <p class="text-orange-600 font-bold">{{ product.price | currency : 'USD' : 'symbol' }}</p>
     </div>
   </div>
 </div>
