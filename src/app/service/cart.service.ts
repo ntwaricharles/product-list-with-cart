@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { Product } from './product.service'; // Adjust the path as necessary
+import { Product } from './product.service';
 
 export interface CartItem extends Product {
   quantity: number;
@@ -33,6 +33,12 @@ export class CartService {
     this.cartItems = this.cartItems.filter(
       (item) => item.name !== product.name
     );
+    this.cartSubject.next(this.cartItems);
+  }
+
+  clearCart(): void {
+    // Clear all items from the cart
+    this.cartItems = [];
     this.cartSubject.next(this.cartItems);
   }
 
