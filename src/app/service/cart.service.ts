@@ -20,10 +20,8 @@ export class CartService {
       (item) => item.name === product.name
     );
     if (existingProduct) {
-      // Update quantity if the product is already in the cart
       existingProduct.quantity += 1;
     } else {
-      // Add new product to cart with initial quantity of 1
       this.cartItems.push({ ...product, quantity: 1 });
     }
     this.cartSubject.next(this.cartItems);
@@ -37,7 +35,6 @@ export class CartService {
   }
 
   clearCart(): void {
-    // Clear all items from the cart
     this.cartItems = [];
     this.cartSubject.next(this.cartItems);
   }
